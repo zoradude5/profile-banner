@@ -1,0 +1,49 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    var d = $('#login')
+    d.css('cursor','pointer')
+    .click(function() {
+        FB.login(function(response) {
+          if (response.session) {
+            if (response.perms) {
+              // user is logged in and granted some permissions.
+              // perms is a comma separated list of granted permissions
+            } else {
+              // user is logged in, but did not grant any permissions
+            }
+          } else {
+            // user is not logged in
+          }
+        }, {perms:'publish_stream'});
+    })
+})
+</script>
+
+
+</head>
+
+
+<body>
+<form enctype="multipart/form-data" action="/" method="post"></br>
+                    <input type="file" name="import_file" />
+                    <input type="submit" value="upload!" /></br>
+                </form>
+
+
+<img id="login" src="static/login-button.png" />
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+  FB.init({appId: '162267360482766', status: true, cookie: true, xfbml: true});
+  FB.Event.subscribe('auth.sessionChange', function(response) {
+    if (response.session) {
+      // A user has logged in, and a new cookie has been saved
+    } else {
+      // The user has logged out, and the cookie has been cleared
+    }
+  });
+</script>
+</body></html>
